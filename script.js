@@ -1,18 +1,16 @@
 "use strict";
-let total = 200;
-total = '400';
-function isNumber(value) {
+function toNumber(value) {
     if (typeof value === 'number') {
-        return true;
+        return value;
+    }
+    else if (typeof value === 'string') {
+        return Number(value);
     }
     else {
-        return false;
+        const err = new Error("value deve ser um numero ou string");
+        return err;
+        // ou
+        // throw 'value deve ser um numero ou string'
     }
 }
-console.log(isNumber('200'));
-const button = document.querySelector('button');
-if (button) {
-    button.click();
-}
-// OU
-button?.click();
+console.log(toNumber('200'));
