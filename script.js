@@ -1,25 +1,18 @@
 "use strict";
-let total = 20;
-total = '40';
-function preencherDados(dados) {
-    document.body.innerHTML += `
-  <h2>${dados.nome}</h2>
-  <p>${dados.preco}</p>
-  <p>Inclue teclado? ${dados.teclado ? 'sim' : 'não'}</p>
+async function fetchProduct() {
+    const response = await fetch('https://api.origamid.dev/json/notebook.json');
+    const data = await response.json();
+    showProduct(data);
+}
+fetchProduct();
+function showProduct(data) {
+    document.body.innerHTML = `
+  <div>
+  <h2>${data.nome}</h2>
+  <p>R$ ${data.preco}</p>
+  <strong>Empresa: ${data.empresaMontadora.nome}</strong> <br>
+  <strong>R$ ${data.preco}</strong>
+
+  </div>
   `;
 }
-const pc = {
-    nome: 'pc',
-    preco: 22,
-    teclado: true,
-};
-preencherDados(pc);
-preencherDados({
-    nome: 'celular',
-    preco: 50,
-    teclado: false,
-});
-function pintarCategorias(value) {
-    console.log(value);
-}
-pintarCategorias('descod');

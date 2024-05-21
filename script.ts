@@ -1,40 +1,35 @@
-type NumberOrString = string | number;
+async function fetchProduct() {
+  const response = await fetch('https://api.origamid.dev/json/notebook.json')
+  const data = await response.json() 
+  showProduct(data)
+}
 
-let total : NumberOrString = 20
-total = '40'
+fetchProduct()
 
-type Produto = {
+interface Empresa{
+  fundacao:number;
+  nome: string;
+  pais: string;
+}
+
+interface Product {
   nome: string;
   preco: number;
-  teclado: boolean;
-};
+  descricao: string;
+  garantia: string;
+  seguroAcidentes: boolean;
+  empresaMontadora: Empresa;
+  empresaFabricante:Empresa;
+}
 
+function showProduct(data: Product) {
+  document.body.innerHTML = `
+  <div>
+  <h2>${data.nome}</h2>
+  <p>R$ ${data.preco}</p>
+  <strong>Empresa: ${data.empresaMontadora.nome}</strong> <br>
+  <strong>R$ ${data.preco}</strong>
 
-function preencherDados(dados: Produto){
-  document.body.innerHTML += `
-  <h2>${dados.nome}</h2>
-  <p>${dados.preco}</p>
-  <p>Inclue teclado? ${dados.teclado ? 'sim' : 'não'}</p>
+  </div>
   `
 }
-
-const pc:Produto = {
-  nome: 'pc',
-  preco: 22,
-  teclado: true,
-}
-preencherDados(pc)
-
-preencherDados({
-  nome: 'celular',
-  preco: 50,
-  teclado: false,
-})
-
-type Categorias = 'design' | 'codigo' | 'descod'
-
-function pintarCategorias(value: 'design' | 'codigo' | 'descod'){
-  console.log(value)
-}
-
-pintarCategorias('descod')
