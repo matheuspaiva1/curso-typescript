@@ -1,29 +1,20 @@
-const input = document.querySelector('input');
+let total: string | number = 200
+total = '400'
 
-const total = localStorage.getItem('total');
-if (input && total){
-  input.value = total;
-  calcularGanho(Number(input.value));  
-}
-
-function calcularGanho(value: number) {
-  const p = document.querySelector('p');
-  if (p){
-    p.innerText = `ganho total: ${value + 100 - value * 0.2}`;
+function isNumber(value: string | number){
+  if(typeof value === 'number'){
+    return true
+  } else {
+    return false
   }
 }
+console.log(isNumber('200'))
 
-function totalMudou() {
-  if (input){
-    localStorage.setItem('total', input.value);
-    calcularGanho(Number(input.value));  
-  }
-}
-if (input){
-  input.addEventListener('keyup', totalMudou);
+const button = document.querySelector('button')
+if(button) {
+  button.click()
 }
 
+// OU
 
-
-
-
+button?.click()
