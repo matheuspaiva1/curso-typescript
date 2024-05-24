@@ -1,18 +1,16 @@
 "use strict";
-async function fetchProduct() {
-    const response = await fetch('https://api.origamid.dev/json/notebook.json');
-    const data = await response.json();
-    showProduct(data);
+const numeros = [10, 20, 30, 40];
+const valores = [10, 'taxas', 30, 'numeros', 40];
+function maiorQue10(data) {
+    return data.filter((n) => n == 10);
 }
-fetchProduct();
-function showProduct(data) {
-    document.body.innerHTML = `
-  <div>
-  <h2>${data.nome}</h2>
-  <p>R$ ${data.preco}</p>
-  <strong>Empresa: ${data.empresaMontadora.nome}</strong> <br>
-  <strong>R$ ${data.preco}</strong>
-
-  </div>
-  `;
+function filtrarValores(data) {
+    return data.filter(item => typeof item === 'number');
 }
+console.log(maiorQue10(numeros));
+console.log(filtrarValores(valores));
+// array de arrays
+const dados = [
+    ['senhor dos aneis', 80],
+    ['game of thrones', 60],
+];
