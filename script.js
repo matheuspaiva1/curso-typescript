@@ -1,16 +1,30 @@
 "use strict";
-const numeros = [10, 20, 30, 40];
-const valores = [10, 'taxas', 30, 'numeros', 40];
-function maiorQue10(data) {
-    return data.filter((n) => n == 10);
+async function fetchCursos() {
+    const response = await fetch('https://api.origamid.dev/json/cursos.json');
+    const data = await response.json();
+    mostrarCursos(data);
 }
-function filtrarValores(data) {
-    return data.filter(item => typeof item === 'number');
+fetchCursos();
+function mostrarCursos(cursos) {
+    cursos.forEach(curso => {
+        let color;
+        if (curso.nivel === 'iniciante') {
+            color = 'blue';
+        }
+        else {
+            color = 'red';
+        }
+        document.body.innerHTML += `
+    <div>
+    <h2 style="color: ${color}">${curso.nome}</h2>
+    <p>Horas: ${curso.horas}</p>
+    <p>Aulas: ${curso.aulas}</p>
+    <p>Tipo: ${curso.gratuito ? 'Gratuito' : 'Pago'}</p>
+    <p>Tags: ${curso.tags.join(', ')}</p>
+
+
+    <strong>${curso.nivel}</strong>
+  </div>
+    `;
+    });
 }
-console.log(maiorQue10(numeros));
-console.log(filtrarValores(valores));
-// array de arrays
-const dados = [
-    ['senhor dos aneis', 80],
-    ['game of thrones', 60],
-];

@@ -1,20 +1,41 @@
-const numeros = [10,20,30,40]
-const valores = [10, 'taxas', 30, 'numeros',40]
-
-function maiorQue10(data: Array<number>){
-  return data.filter((n) => n == 10)
+interface Curso {
+  nome: string,
+  horas: number,
+  aulas: number,
+  gratuito: boolean,
+  tags: string[],
+  idAulas: number[],
+  nivel: 'iniciante' | 'avançado',
 }
 
-function filtrarValores(data: Array<number | string>){
-  return data.filter(item => typeof item === 'number')
+async function fetchCursos() {
+  const response = await fetch('https://api.origamid.dev/json/cursos.json');
+  const data = await response.json();
+  mostrarCursos(data);
 }
 
-console.log(maiorQue10(numeros))
-console.log(filtrarValores(valores))
+fetchCursos()
 
-// array de arrays
-const dados = [
-  ['senhor dos aneis', 80],
-  ['game of thrones', 60],
+function mostrarCursos(cursos: Curso[]) {
+  cursos.forEach(curso => {
+    let color;
+    if(curso.nivel === 'iniciante'){
+      color = 'blue'
+    } else{
+      color = 'red'
+    }
+    document.body.innerHTML += `
+    <div>
+    <h2 style="color: ${color}">${curso.nome}</h2>
+    <p>Horas: ${curso.horas}</p>
+    <p>Aulas: ${curso.aulas}</p>
+    <p>Tipo: ${curso.gratuito ? 'Gratuito' : 'Pago'}</p>
+    <p>Tags: ${curso.tags.join(', ')}</p>
 
-]
+
+    <strong>${curso.nivel}</strong>
+  </div>
+    `
+  })
+}
+
