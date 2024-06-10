@@ -1,26 +1,24 @@
-/**
- const button = document.querySelector('button');
- function handleClick(event: MouseEvent){
-   console.log(event.pageX)
- }
- button?.addEventListener('click', handleClick);
- 
- function ativarMenu(event: MouseEvent | TouchEvent | KeyboardEvent) {
-   console.log(event)
- }
- 
- document.documentElement.addEventListener('mousedown', ativarMenu)
- document.documentElement.addEventListener('touchstart', ativarMenu)
- window.addEventListener('keydown', ativarMenu)
-*/
+const btnMobile = document.getElementById('btn-mobile')
+
+function toggleMenu(event: PointerEvent) {
+  const nav = document.querySelector('nav')
+  const button = event.currentTarget
 
 
-const button = document.querySelector('button')
+  if(button instanceof HTMLElement && nav){
+    const active = nav.classList.contains("active")
+    if (active){
+      nav.classList.remove('active')
+      button.setAttribute('aria-expanded', 'false')
+      button.setAttribute('aria-label', 'Abrir Menu')
+    } else{
+      nav.classList.add('active')
+      button.setAttribute('aria-expanded', 'true')
+      button.setAttribute('aria-label', 'Fechar Menu')
+    }
 
-function handleClick(event: MouseEvent){
-  const elemento = event.currentTarget
-  if(elemento instanceof HTMLElement){
-    console.log(elemento.innerText)
-  }
+    }
+  console.log(event)
 }
-button?.addEventListener('click',handleClick)
+
+btnMobile?.addEventListener('pointerdown', toggleMenu)
