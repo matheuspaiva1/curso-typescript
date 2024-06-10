@@ -1,12 +1,14 @@
-const links = document.querySelectorAll('.link');
+const button = document.querySelector('button');
+function handleClick(event: MouseEvent){
+  console.log(event.pageX)
+}
+button?.addEventListener('click', handleClick);
 
-function modifACorBorder (elemento: HTMLElement) {
-    elemento.style.color="#D60000";
-    elemento.style.border = "1px solid #FF0F0F";
+function ativarMenu(event: MouseEvent | TouchEvent | KeyboardEvent) {
+  console.log(event)
 }
 
-links.forEach((link)=>{
-  if(link instanceof HTMLElement){
-    modifACorBorder(link)
-  }
-})
+document.documentElement.addEventListener('mousedown', ativarMenu)
+document.documentElement.addEventListener('touchstart', ativarMenu)
+window.addEventListener('keydown', ativarMenu)
+

@@ -1,11 +1,12 @@
 "use strict";
-const links = document.querySelectorAll('.link');
-function modifACorBorder(elemento) {
-    elemento.style.color = "#D60000";
-    elemento.style.border = "1px solid #FF0F0F";
+const button = document.querySelector('button');
+function handleClick(event) {
+    console.log(event.pageX);
 }
-links.forEach((link) => {
-    if (link instanceof HTMLElement) {
-        modifACorBorder(link);
-    }
-});
+button?.addEventListener('click', handleClick);
+function ativarMenu(event) {
+    console.log(event);
+}
+document.documentElement.addEventListener('mousedown', ativarMenu);
+document.documentElement.addEventListener('touchstart', ativarMenu);
+window.addEventListener('keydown', ativarMenu);
