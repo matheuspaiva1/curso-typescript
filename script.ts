@@ -1,5 +1,7 @@
-const link = document.getElementById('origamid')
+const links = document.querySelectorAll('.link');
 
-if (link instanceof HTMLAnchorElement) {
-  link.href.replace('http://', 'https://')
-}
+links.forEach((link) => {
+  if (link instanceof HTMLAnchorElement) {
+    console.log(link.href);
+  }
+})

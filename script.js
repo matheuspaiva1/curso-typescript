@@ -1,5 +1,7 @@
 "use strict";
-const link = document.getElementById('origamid');
-if (link instanceof HTMLAnchorElement) {
-    link.href.replace('http://', 'https://');
-}
+const links = document.querySelectorAll('.link');
+links.forEach((link) => {
+    if (link instanceof HTMLAnchorElement) {
+        console.log(link.href);
+    }
+});
