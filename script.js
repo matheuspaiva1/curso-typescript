@@ -2,35 +2,32 @@
 //comando tsc -w
 class Produto {
     nome;
-    preco;
-    constructor(nome, preco) {
+    constructor(nome) {
         this.nome = nome;
-        this.preco = preco;
-    }
-    precoReal() {
-        return `R$ ${this.preco}`;
     }
 }
 const livro = new Produto('guerra', 29.99);
 console.log(livro instanceof Produto);
-class Livro {
+class Livro extends Produto {
     autor;
-    constructor(autor) {
+    constructor(nome, autor) {
+        super(nome);
         this.autor = autor;
     }
 }
-class Jogo {
+class Jogo extends Produto {
     jogador;
-    constructor(jogador) {
+    constructor(nome, jogador) {
+        super(nome);
         this.jogador = jogador;
     }
 }
 function buscarProduto(buscar) {
     if (buscar === 'hobbit') {
-        return new Livro('J.R.R Tolkien');
+        return new Livro('hobbit', 'J.R.R Tolkien');
     }
     if (buscar === 'Dark Souls') {
-        return new Jogo(59);
+        return new Jogo('Dark Souls', 59);
     }
     return null;
 }
@@ -39,5 +36,8 @@ if (produto instanceof Livro) {
     console.log(produto.autor);
 }
 if (produto instanceof Jogo) {
-    console.log(produto.jogador);
+    console.log(produto.nome);
+}
+if (produto instanceof Produto) {
+    console.log(produto.nome);
 }
