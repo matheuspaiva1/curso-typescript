@@ -1,47 +1,43 @@
-/** 
- * EXEMPLO 1:
- * 
- * function extractText<Tipo extends HTMLElement>(el: Tipo){
-
-  return {
-    texto: el.innerText;
-    el,
-  } 
+function somar (a: number, b: number, c?: number):number {
+  return a + b + (c ? c : 0)
 }
 
-const link = document.querySelector('a')
+somar(3,4,6)
 
-if(link){
-  console.log(extractText(link).el.href);
+const subtrair = (a: number, b: number) => a - b
+subtrair(4,3)
+
+type Callback = (event: MouseEvent) => void
+
+function pintarTela(cor: string){
+  document.body.style.background = cor
 }
-//////////////////////////////////////////////////////////////////////////
-  
-EXEMPLO 2:  
-function $<Tipo extends Element>(selector:string): Tipo | null {
-  return document.querySelector(selector)
+pintarTela('black')
+
+const btn = document.querySelector('button')
+
+btn?.click()
+
+function isString(value: any){
+  if(typeof value === 'string'){
+    return true
+  }
 }
+console.log(isString('Teste'))
+console.log(isString(200))
 
-const link = $<HTMLAnchorElement>('a')
-*/
-
-const link = document.querySelector<HTMLVideoElement>(".link")
-
-if (link instanceof HTMLVideoElement) {
-  link?.volume
-}
-
-async function getData<T>(url:string): Promise<T> {
-  const response = await fetch(url)
-  return await response.json()
-}
-
-interface Notebook {
-  nome: string;
-  preco: number;
+function abortar(mensagem: string){
+  throw new Error(mensagem);
 }
 
-async function handleData() {
-  const notebook = await getData<Notebook>("https://api.origamid.dev/json/notebook.json")
-  console.log(notebook.preco)
+//abortar('um erro')
+//console.log('Tente Novamente')
+
+interface Quadrado {
+  lado: number;
+  perimetro(lado: number): number;
 }
-handleData()
+
+function calcular(forma: Quadrado){
+  forma.perimetro(3)
+}

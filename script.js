@@ -1,39 +1,26 @@
 "use strict";
-/**
- * EXEMPLO 1:
- *
- * function extractText<Tipo extends HTMLElement>(el: Tipo){
-
-  return {
-    texto: el.innerText;
-    el,
-  }
+function somar(a, b, c) {
+    return a + b + (c ? c : 0);
 }
-
-const link = document.querySelector('a')
-
-if(link){
-  console.log(extractText(link).el.href);
+somar(3, 4, 6);
+const subtrair = (a, b) => a - b;
+subtrair(4, 3);
+function pintarTela(cor) {
+    document.body.style.background = cor;
 }
-//////////////////////////////////////////////////////////////////////////
-  
-EXEMPLO 2:
-function $<Tipo extends Element>(selector:string): Tipo | null {
-  return document.querySelector(selector)
+pintarTela('black');
+const btn = document.querySelector('button');
+btn?.click();
+function isString(value) {
+    if (typeof value === 'string') {
+        return true;
+    }
 }
-
-const link = $<HTMLAnchorElement>('a')
-*/
-const link = document.querySelector(".link");
-if (link instanceof HTMLVideoElement) {
-    link?.volume;
+console.log(isString('Teste'));
+console.log(isString(200));
+function abortar(mensagem) {
+    throw new Error(mensagem);
 }
-async function getData(url) {
-    const response = await fetch(url);
-    return await response.json();
+function calcular(forma) {
+    forma.perimetro(3);
 }
-async function handleData() {
-    const notebook = await getData("https://api.origamid.dev/json/notebook.json");
-    console.log(notebook.preco);
-}
-handleData();
