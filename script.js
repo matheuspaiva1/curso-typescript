@@ -1,21 +1,54 @@
 "use strict";
-const btnMobile = document.getElementById('btn-mobile');
-function toggleMenu(event) {
-    const nav = document.querySelector('nav');
-    const button = event.currentTarget;
-    if (button instanceof HTMLElement && nav) {
-        const active = nav.classList.contains("active");
-        if (active) {
-            nav.classList.remove('active');
-            button.setAttribute('aria-expanded', 'false');
-            button.setAttribute('aria-label', 'Abrir Menu');
-        }
-        else {
-            nav.classList.add('active');
-            button.setAttribute('aria-expanded', 'true');
-            button.setAttribute('aria-label', 'Fechar Menu');
-        }
-    }
-    console.log(event);
+/**
+ * EXEMPLO 1:
+function retorno<variavel>(a: variavel): variavel{
+  return a
 }
-btnMobile?.addEventListener('pointerdown', toggleMenu);
+
+console.log(retorno('A Game'))
+
+ * => o generic (variavel) adapta a função para o tipo na qual ela esta retornando
+ * EX:
+ * console.log(retorno('A Game'))
+ * function retorno<string>(a: string): string{
+      return a
+    }
+ *
+console.log(retorno<number>(200)) // => também pode informar o tipo aqui
+console.log(retorno(true))
+///////////////////////////////////////////////////////////////////////////////////////
+EXEMPLO 2:
+
+const numeros = [1,2,3,4,5,6,7,8,9]
+const frutas = ['banana','pera','uva','laranja','limão','maçã']
+
+function firstFive<TipoLista>(lista: TipoLista[]): TipoLista[]{
+  return lista.slice(0,5)
+}
+
+console.log(firstFive(numeros))
+console.log(firstFive(frutas).map((item)=> item))
+///////////////////////////////////////////////////////////////////////////////////
+
+EXEMPLO 3:
+function notNull<T>(arg:T){
+  if(arg !== null){
+    return arg
+  } else {
+    return null
+  }
+}
+
+notNull('MATHEUS')?.toLowerCase()
+notNull(200)?.toFixed()
+*/
+function tipoDado(a) {
+    const resultado = {
+        dado: a,
+        tipo: typeof a,
+    };
+    console.log(resultado);
+    return resultado;
+}
+tipoDado(true).tipo;
+tipoDado(200).tipo;
