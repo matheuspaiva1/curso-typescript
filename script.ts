@@ -1,57 +1,47 @@
-/**
+/** 
  * EXEMPLO 1:
-function retorno<variavel>(a: variavel): variavel{
-  return a
-}
-
-console.log(retorno('A Game'))
-
- * => o generic (variavel) adapta a função para o tipo na qual ela esta retornando
- * EX:
- * console.log(retorno('A Game'))
- * function retorno<string>(a: string): string{
-      return a
-    }
  * 
-console.log(retorno<number>(200)) // => também pode informar o tipo aqui
-console.log(retorno(true))
-///////////////////////////////////////////////////////////////////////////////////////
-EXEMPLO 2:
+ * function extractText<Tipo extends HTMLElement>(el: Tipo){
 
-const numeros = [1,2,3,4,5,6,7,8,9]
-const frutas = ['banana','pera','uva','laranja','limão','maçã']
-
-function firstFive<TipoLista>(lista: TipoLista[]): TipoLista[]{
-  return lista.slice(0,5)
+  return {
+    texto: el.innerText;
+    el,
+  } 
 }
 
-console.log(firstFive(numeros))
-console.log(firstFive(frutas).map((item)=> item))
-///////////////////////////////////////////////////////////////////////////////////
+const link = document.querySelector('a')
 
-EXEMPLO 3:
-function notNull<T>(arg:T){
-  if(arg !== null){
-    return arg
-  } else {
-    return null
-  }
+if(link){
+  console.log(extractText(link).el.href);
+}
+//////////////////////////////////////////////////////////////////////////
+  
+EXEMPLO 2:  
+function $<Tipo extends Element>(selector:string): Tipo | null {
+  return document.querySelector(selector)
 }
 
-notNull('MATHEUS')?.toLowerCase()
-notNull(200)?.toFixed()
+const link = $<HTMLAnchorElement>('a')
 */
 
-function tipoDado<T>(a:T): { dado: T; tipo: string;}{
-  const resultado = {
-    dado: a,
-    tipo: typeof a,
-  }
-  console.log(resultado)
-  return resultado;
+const link = document.querySelector<HTMLVideoElement>(".link")
+
+if (link instanceof HTMLVideoElement) {
+  link?.volume
 }
 
-tipoDado(true).tipo
-tipoDado(200).tipo
+async function getData<T>(url:string): Promise<T> {
+  const response = await fetch(url)
+  return await response.json()
+}
 
+interface Notebook {
+  nome: string;
+  preco: number;
+}
 
+async function handleData() {
+  const notebook = await getData<Notebook>("https://api.origamid.dev/json/notebook.json")
+  console.log(notebook.preco)
+}
+handleData()
