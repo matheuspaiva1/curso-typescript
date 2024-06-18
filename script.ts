@@ -1,24 +1,14 @@
-function normalizar(valor: string): string;
-function normalizar(valor: string[]): string[];
+function arrendondar(valor: number): number
+function arrendondar(valor: string): string 
 
-
-function normalizar(valor: string | string[]): string | string[] {
-  if(typeof valor === 'string'){
-    return valor.trim().toLowerCase()
-  } else{
-    return valor.map((item)=> item.trim().toLowerCase())
+function arrendondar(valor: number | string): number | string {
+  if (typeof valor === 'number'){
+    return Math.ceil(valor)
+  } else {
+    return Math.ceil(Number(valor)).toString()
   }
 }
 
-console.log(normalizar(' Produto '))
-console.log(normalizar(['  banana ', 'UVA   ', ]).filter)
+console.log(arrendondar(200.32))
+console.log(arrendondar('200.32'))
 
-
-function $(selector: 'a'): HTMLAnchorElement | null 
-function $(selector: 'video'): HTMLVideoElement | null 
-
-function $(selector: string): Element | null {
-  return document.querySelector(selector)
-}
-$('a')?.click
-$('video')?.volume

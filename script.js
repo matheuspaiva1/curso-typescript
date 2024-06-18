@@ -1,16 +1,11 @@
 "use strict";
-function normalizar(valor) {
-    if (typeof valor === 'string') {
-        return valor.trim().toLowerCase();
+function arrendondar(valor) {
+    if (typeof valor === 'number') {
+        return Math.ceil(valor);
     }
     else {
-        return valor.map((item) => item.trim().toLowerCase());
+        return Math.ceil(Number(valor)).toString();
     }
 }
-console.log(normalizar(' Produto '));
-console.log(normalizar(['  banana ', 'UVA   ',]).filter);
-function $(selector) {
-    return document.querySelector(selector);
-}
-$('a')?.click;
-$('video')?.volume;
+console.log(arrendondar(200.32));
+console.log(arrendondar('200.32'));
