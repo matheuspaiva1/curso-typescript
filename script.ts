@@ -1,43 +1,24 @@
-function somar (a: number, b: number, c?: number):number {
-  return a + b + (c ? c : 0)
-}
+function normalizar(valor: string): string;
+function normalizar(valor: string[]): string[];
 
-somar(3,4,6)
 
-const subtrair = (a: number, b: number) => a - b
-subtrair(4,3)
-
-type Callback = (event: MouseEvent) => void
-
-function pintarTela(cor: string){
-  document.body.style.background = cor
-}
-pintarTela('black')
-
-const btn = document.querySelector('button')
-
-btn?.click()
-
-function isString(value: any){
-  if(typeof value === 'string'){
-    return true
+function normalizar(valor: string | string[]): string | string[] {
+  if(typeof valor === 'string'){
+    return valor.trim().toLowerCase()
+  } else{
+    return valor.map((item)=> item.trim().toLowerCase())
   }
 }
-console.log(isString('Teste'))
-console.log(isString(200))
 
-function abortar(mensagem: string){
-  throw new Error(mensagem);
+console.log(normalizar(' Produto '))
+console.log(normalizar(['  banana ', 'UVA   ', ]).filter)
+
+
+function $(selector: 'a'): HTMLAnchorElement | null 
+function $(selector: 'video'): HTMLVideoElement | null 
+
+function $(selector: string): Element | null {
+  return document.querySelector(selector)
 }
-
-//abortar('um erro')
-//console.log('Tente Novamente')
-
-interface Quadrado {
-  lado: number;
-  perimetro(lado: number): number;
-}
-
-function calcular(forma: Quadrado){
-  forma.perimetro(3)
-}
+$('a')?.click
+$('video')?.volume
